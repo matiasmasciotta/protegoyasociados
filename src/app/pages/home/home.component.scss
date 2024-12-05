@@ -1,0 +1,36 @@
+.hero-section {
+    height: 100vh;
+    background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+    position: relative;
+  }
+  
+  .hero-overlay {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .services-section {
+    background-color: #f8f9fa;
+  }
+  
+  .service-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .service-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .contact-section {
+    background-color: #212529;
+    color: white;
+    padding: 60px 0;
+  }
+  
