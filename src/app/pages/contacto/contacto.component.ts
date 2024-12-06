@@ -28,7 +28,7 @@ export class ContactoComponent implements OnInit{
       return;
     }
 
-    const url = `https://wa.me/5491165983667?text=
+    const url = `https://wa.me/5491162485451?text=
       Hola, mi nombre es ${encodeURIComponent(name)}.
       
       Email: ${encodeURIComponent(email)}.
