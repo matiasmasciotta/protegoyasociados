@@ -41,6 +41,7 @@ export class ContactoComponent implements OnInit{
       
       Mensaje: ${encodeURIComponent(message)}.`;
 
+      
     window.open(url, '_blank');
   }
 
