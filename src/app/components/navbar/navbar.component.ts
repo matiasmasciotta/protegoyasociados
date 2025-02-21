@@ -30,7 +30,7 @@ export class NavbarComponent {
     // Suscripción al carrito para obtener los items
     this.cartService.cart$.subscribe(cart => {
       this.cartItems = cart; // Aquí `cart` debe ser un arreglo de CartItem
-      this.totalQuantity = cart.reduce((total, item) => total + item.cantidad, 0);
+      this.totalQuantity = cart.length;
       this.calculateTotalPrice(); // Recalcular el total cuando cambian los items
     });
   }
