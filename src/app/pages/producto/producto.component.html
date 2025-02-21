@@ -6,7 +6,15 @@
     <div class="container text-center text-white">
       <h1 class="display-4" data-aos="fade-down" data-aos-delay="500">{{ producto.nombre }}</h1>
       <p class="lead" data-aos="fade-up" data-aos-delay="700">{{ producto.descripcion }}</p>
-      <button class="btn btn-primary btn-lg mt-3" (click)="volverAlInicio()">Volver al inicio</button>
+
+      <div class="d-flex justify-content-center align-items-center mt-3">
+        <button class="btn btn-secondary" (click)="decrementarCantidad()">-</button>
+        <span class="mx-3">{{ cantidad }}</span>
+        <button class="btn btn-secondary" (click)="incrementarCantidad()">+</button>
+      </div>
+
+      <button class="btn btn-primary btn-lg mt-3" (click)="agregarAlCarrito()">Agregar al carrito</button>
+      <button class="btn btn-secondary btn-lg mt-3" (click)="volverAlInicio()">Volver al inicio</button>
     </div>
   </div>
 </div>
