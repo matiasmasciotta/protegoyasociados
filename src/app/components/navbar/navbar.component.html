@@ -18,7 +18,7 @@
         <li class="nav-item"><a class="nav-link" routerLink="/contacto">Contacto</a></li>
       </ul>
     </div>
-    <button class="btn btn-outline-light position-relative" (click)="openCart()">
+    <button id="cartButton" class="btn btn-outline-light position-relative" (click)="openCart()">
       🛒
       <span class="badge bg-danger position-absolute top-0 start-100 translate-middle" *ngIf="totalQuantity > 0">
         {{ totalQuantity }}
@@ -70,8 +70,8 @@
         </div>
       </div>
       <div class="modal-footer justify-content-center">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Proceder al Pago</button>
+        <button id="closeButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="confirmarPago()">Terminar Compra</button>
       </div>
     </div>
   </div>

@@ -45,13 +45,13 @@ export class NavbarComponent {
     // Actualizar la cantidad de un producto
     const newQuantity = action === 'increment' ? item.cantidad + 1 : item.cantidad - 1;
     if (newQuantity > 0) {
-      this.cartService.updateQuantity(item.id, newQuantity);
+      this.cartService.updateQuantity(item.productId, newQuantity);
     }
   }
 
   removeFromCart(item: CartItem) {
     // Eliminar producto del carrito
-    this.cartService.removeFromCart(item.id);
+    this.cartService.removeFromCart(item.productId);
   }
 
   // Método para obtener el producto completo utilizando productId
@@ -72,4 +72,19 @@ export class NavbarComponent {
       return total + (item.cantidad * price);  // Calcular el total con cantidad y precio
     }, 0);
   }
+
+  confirmarPago() {
+    // Llamar al servicio para vaciar el carrito
+    this.cartService.clearCart();
+
+    // Obtener el botón por id y hacer click en él
+    const closeButton = document.getElementById('closeButton');
+    if (closeButton) {
+      closeButton.click(); // Simula el clic en el botón de cerrar
+    }
+
+    // Redirigir o hacer otras acciones que correspondan después de confirmar el pago
+    this.router.navigate(['/home']);  // Redirige al home, o a donde desees
+  }
+
 }

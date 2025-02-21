@@ -1,0 +1,18 @@
+@keyframes flyToCart {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(calc(100vw - 150px), calc(100vh - 150px));  /* Ajusta según la posición del botón */
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0); /* Otras acciones después de la animación */
+    opacity: 0;
+  }
+}
+
+.fly-effect {
+  animation: flyToCart 1.5s ease-out forwards;
+}

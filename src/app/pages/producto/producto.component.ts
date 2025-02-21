@@ -38,11 +38,27 @@ export class ProductoComponent implements OnInit {
 
   incrementarCantidad() {
     this.cantidad++;
+    if (this.producto) {
+      const cartItem: CartItem = {
+        id: this.cartItemCounter,
+        cantidad: this.cantidad,
+        productId: this.producto.id
+      };
+      this.cartService.updateQuantity(this.producto.id, this.cantidad);  // Actualiza la cantidad en el carrito
+    }
   }
-
+  
   decrementarCantidad() {
     if (this.cantidad > 1) {
       this.cantidad--;
+      if (this.producto) {
+        const cartItem: CartItem = {
+          id: this.cartItemCounter,
+          cantidad: this.cantidad,
+          productId: this.producto.id
+        };
+        this.cartService.updateQuantity(this.producto.id, this.cantidad);  // Actualiza la cantidad en el carrito
+      }
     }
   }
 
@@ -54,10 +70,30 @@ export class ProductoComponent implements OnInit {
         cantidad: this.cantidad,
         productId: this.producto.id  // Asignar el productId para hacer referencia al producto
       };
-      
+  
       this.cartService.addToCart(cartItem);  // Agregar el item al carrito
-      this.router.navigate(['/carrito']);  // Redirige al carrito después de agregar
+  
+      // Restablecer la cantidad a 0
+      this.cantidad = 1;
+  
+      // Aquí podrías activar una animación AOS o manipular una clase para efecto visual
+      this.triggerFlyToCartEffect();
     }
+  }
+  
+  triggerFlyToCartEffect() {
+    // Puedes usar una librería o manipular un elemento para crear la animación
+    const cartButton = document.getElementById('cartButton')!;  // Asegúrate de que el botón de carrito tenga el id "cartButton"
+    const productImage = document.getElementById('productImage')!; // El producto podría tener una imagen o contenedor con este id
+  
+    // Agregar animación con AOS o manejar las animaciones con un estilo CSS
+    productImage.classList.add('fly-effect');
+    
+    // Podrías agregar un pequeño retraso o animación que "dispare" el vuelo del producto al carrito
+    setTimeout(() => {
+      // Después de la animación, puedes mostrar un mensaje o cambiar alguna clase para indicar éxito
+      alert("¡Producto agregado al carrito!");
+    }, 1000);  // Ajustar el tiempo según la duración de la animación
   }
 
 }

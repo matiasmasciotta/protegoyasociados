@@ -1,6 +1,7 @@
-<div *ngIf="producto" class="hero-section aos-init" data-aos="fade-in" data-aos-duration="2000"
-  [style.background]="'url(' + producto.imagen + ') center/cover no-repeat'" 
-  style="height: 100vh;">
+<!-- Producto con imagen o contenedor -->
+<div *ngIf="producto" class="hero-section aos-init" data-aos="fade-in" data-aos-duration="2000" 
+     [style.background]="'url(' + producto.imagen + ') center/cover no-repeat'" 
+     style="height: 100vh;">
   <div class="hero-overlay d-flex align-items-center justify-content-center" 
        style="background: rgba(0, 0, 0, 0.5); height: 100%;">
     <div class="container text-center text-white">
@@ -24,3 +25,9 @@
   <h2>Producto no encontrado</h2>
   <button class="btn btn-primary mt-3" (click)="volverAlInicio()">Volver al inicio</button>
 </div>
+
+<!-- Aquí puedes tener el contenedor de la imagen del producto que se moverá -->
+<img id="productImage" src="{{ producto?.imagen }}" alt="{{ producto?.nombre }}" style="display:none;" />
+
+<!-- Botón del carrito en la navbar con un id -->
+<button id="cartButton" class="btn btn-primary">Carrito</button>
