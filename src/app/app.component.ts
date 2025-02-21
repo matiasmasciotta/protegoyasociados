@@ -12,5 +12,5 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'protego-y-asociados-app';
+  title = 'ecomerce';
 }

@@ -7,19 +7,18 @@
   <div class="hero-overlay d-flex align-items-center justify-content-center" style="background: rgba(0, 0, 0, 0.5); height: 100%;">
     <div class="container text-center text-white">
       <h1 class="display-4" data-aos="fade-down" data-aos-delay="500">Dietetica La Fresca</h1>
-      <p class="lead" data-aos="fade-up" data-aos-delay="700">Productos frescos, precios mayoristas y mucho mas</p>
+      <p class="lead" data-aos="fade-up" data-aos-delay="700">Productos frescos, precios mayoristas y mucho más</p>
       <button class="btn btn-primary btn-lg mt-3" data-aos="zoom-in" data-aos-delay="1000">Conoce más</button>
     </div>
   </div>
 </div>
 
-
 <div class="services-section py-5 bg-light">
   <div class="container">
     <h2 class="text-center mb-5" data-aos="fade-up">Nuestros productos más vendidos</h2>
     <div class="row">
-      <div *ngFor="let producto of productos" class="col-md-6 mb-4" data-aos="fade-right">
-        <div class="service-card shadow p-4 bg-white" (click)="verProducto(producto.id)" style="cursor: pointer;">
+      <div *ngFor="let producto of productos" class="col-md-6 col-lg-4 mb-4" data-aos="fade-right">
+        <div class="service-card shadow p-3 bg-white" (click)="verProducto(producto.id)" style="cursor: pointer;">
           <img [src]="producto.imagen" [alt]="producto.nombre" class="img-fluid mb-3 rounded">
           <h4>{{ producto.nombre }}</h4>
           <p>{{ producto.descripcion }}</p>
@@ -29,10 +28,9 @@
   </div>
 </div>
 
-
 <div class="contact-section py-5">
   <div class="container text-center">
-    <h2 class="mb-4" data-aos="fade-up">Sos mayorista?</h2>
+    <h2 class="mb-4" data-aos="fade-up">¿Sos mayorista?</h2>
     <p data-aos="fade-up" data-aos-delay="200">Contactanos para obtener más información sobre nuestros servicios personalizados.</p>
     <button class="btn btn-success btn-lg mt-3" data-aos="zoom-in" data-aos-delay="400">Contáctanos</button>
   </div>
