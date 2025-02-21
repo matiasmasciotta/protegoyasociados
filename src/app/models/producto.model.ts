@@ -1,19 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import * as AOS from 'aos';
-import { Producto } from '../../models/producto.model';
-import { CommonModule } from '@angular/common'; // Importa CommonModule
+export interface Producto {
+    id: number;
+    nombre: string;
+    descripcion: string;
+    imagen: string;
+  }
 
-
-@Component({
-  selector: 'app-home',
-  standalone: true,
-  templateUrl: './home.component.html',
-  imports: [CommonModule],
-  styleUrl: './home.component.scss'
-})
-export class HomeComponent implements OnInit {
-  productos: Producto[] = [
+  
+  export const PRODUCTOS: Producto[] = [
     {
       id: 1,
       nombre: 'Aceite de coco',
@@ -51,14 +44,3 @@ export class HomeComponent implements OnInit {
       imagen: 'https://deliciaskitchen.b-cdn.net/wp-content/uploads/2021/06/almendras-propiedades-beneficios-y-contraindicaciones-1170x781.webp'
     }
   ];
-
-  constructor(private router: Router) {}
-
-  ngOnInit() {
-    AOS.init();
-  }
-
-  verProducto(id: number) {
-    this.router.navigate(['/producto', id]);
-  }
-}
