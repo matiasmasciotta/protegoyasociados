@@ -35,6 +35,12 @@ export class NavbarComponent {
     });
   }
 
+  isNavbarOpen = false;
+
+  toggleNavbar() {
+    this.isNavbarOpen = !this.isNavbarOpen;
+  }
+
   openCart() {
     // Lanzar el modal
     const modal = new bootstrap.Modal(document.getElementById('cartModal')!);
@@ -74,6 +80,31 @@ export class NavbarComponent {
   }
 
   confirmarPago() {
+     // Crea un mensaje con el listado de productos y el total
+  let mensaje = '¡Hola! Aquí está el detalle de mi carrito de compras:\n\n';
+
+  this.cartItems.forEach(item => {
+    const producto = this.getProduct(item.productId)?.nombre;
+    const cantidad = item.cantidad;
+    const precio = this.getProductPrice(item.productId);
+    const total = cantidad * precio;
+    mensaje += `${producto} - Cantidad: ${cantidad} - Total: ${total}\n`;
+  });
+
+  // Agregar el total final
+  mensaje += `\nTotal de la compra: ${this.totalPrice}`;
+
+  // Codifica el mensaje para asegurarte de que los caracteres especiales funcionen en la URL
+  mensaje = encodeURIComponent(mensaje);
+
+  // Enlace para abrir WhatsApp con el mensaje
+  const telefono = '+5491165983667';
+  const urlWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+
+  // Redirige al usuario al enlace de WhatsApp
+  window.open(urlWhatsApp, '_blank');
+
+
     // Llamar al servicio para vaciar el carrito
     this.cartService.clearCart();
 

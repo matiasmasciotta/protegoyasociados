@@ -1,10 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Dietetica FDK</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <button id="cartButton" class="btn btn-outline-light position-relative" (click)="openCart()">
+      🛒
+      <span class="badge bg-danger position-absolute top-0 start-100 translate-middle" *ngIf="totalQuantity > 0">
+        {{ totalQuantity }}
+      </span>
+    </button>
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    
+    
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': isNavbarOpen }" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" routerLink="/home">Home</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/nosotros">Nosotros</a></li>
@@ -18,18 +26,12 @@
         <li class="nav-item"><a class="nav-link" routerLink="/contacto">Contacto</a></li>
       </ul>
     </div>
-    <button id="cartButton" class="btn btn-outline-light position-relative" (click)="openCart()">
-      🛒
-      <span class="badge bg-danger position-absolute top-0 start-100 translate-middle" *ngIf="totalQuantity > 0">
-        {{ totalQuantity }}
-      </span>
-    </button>
   </div>
 </nav>
 
 <!-- Modal de Carrito de Compras -->
 <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" data-aos="fade-in" data-aos-duration="1000">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header text-center">
         <h5 class="modal-title w-100" id="cartModalLabel">Carrito de Compras</h5>
@@ -37,34 +39,42 @@
       </div>
       <div class="modal-body" style="background: rgba(0, 0, 0, 0.05);">
         <!-- Tabla del carrito -->
-        <table class="table table-hover">
-          <thead class="table-light">
-            <tr>
-              <th scope="col">ID Producto</th>
-              <th scope="col">Producto</th>
-              <th scope="col">Cantidad</th>
-              <th scope="col">Precio</th>
-              <th scope="col">Total</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of cartItems">
-              <td>{{ item.productId }}</td> <!-- ID del producto -->
-              <td>{{ getProduct(item.productId)?.nombre }}</td> <!-- Nombre del producto -->
-              <td>
-                <button class="btn btn-sm btn-danger" (click)="updateQuantity(item, 'decrement')">-</button>
-                {{ item.cantidad }}
-                <button class="btn btn-sm btn-success" (click)="updateQuantity(item, 'increment')">+</button>
-              </td>
-              <td>{{ getProductPrice(item.productId) | currency }}</td> <!-- Precio del producto -->
-              <td>{{ item.cantidad * getProductPrice(item.productId) | currency }}</td> <!-- Total por producto -->
-              <td>
-                <button class="btn btn-danger" (click)="removeFromCart(item)">Eliminar</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-hover table-sm">
+            <thead class="table-light">
+              <tr>
+                <th scope="col" class="text-center">Prod</th> <!-- Cambié el nombre de la columna -->
+                <th scope="col" class="text-center">Producto</th>
+                <th scope="col" class="text-center">Cant.</th> <!-- Abreviado -->
+                <th scope="col" class="text-center">Precio</th>
+                <th scope="col" class="text-center">Total</th>
+                <th scope="col" class="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cartItems">
+                <td class="text-center">{{ item.productId }}</td> <!-- ID del producto -->
+                <td>{{ getProduct(item.productId)?.nombre }}</td> <!-- Nombre del producto -->
+                <td class="text-center align-middle">
+                  <!-- Contenedor para botones y cantidad -->
+                  <div class="d-flex flex-column align-items-center">
+                    <!-- Botón de decremento -->
+                    <button class="btn btn-sm btn-danger rounded-pill mb-1" (click)="updateQuantity(item, 'decrement')">-</button>
+                    <!-- Cantidad -->
+                    <div class="quantity-value text-center">{{ item.cantidad }}</div>
+                    <!-- Botón de incremento -->
+                    <button class="btn btn-sm btn-success rounded-pill mt-1" (click)="updateQuantity(item, 'increment')">+</button>
+                  </div>
+                </td>
+                <td class="text-center">{{ getProductPrice(item.productId) | currency }}</td> <!-- Precio del producto -->
+                <td class="text-center">{{ item.cantidad * getProductPrice(item.productId) | currency }}</td> <!-- Total por producto -->
+                <td class="text-center">
+                  <button class="btn btn-danger" (click)="removeFromCart(item)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div class="text-end">
           <h5>Total: {{ totalPrice | currency }}</h5>
         </div>
@@ -76,3 +86,4 @@
     </div>
   </div>
 </div>
+
